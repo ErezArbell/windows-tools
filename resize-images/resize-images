@@ -1,0 +1,43 @@
+@echo off
+
+set target_folder=c:\img
+
+:loop
+if not exist %1 goto file_not_exist_error
+
+echo Processing file %1...
+set target_file=%target_folder%\%~n1%~x1
+"%ProgramFiles(x86)%\IrfanView\i_view32.exe" %1 /resize_long=2000 /jpgq=75 /resample /aspectratio /convert="%target_file%"
+if not "%errorlevel%"=="0" goto exec_error
+
+CALL :file_size %1 orig_size
+CALL :file_size "%target_file%" new_size
+
+if %orig_size% lss %new_size% (
+	echo "New file is bigger (%new_size% > %orig_size% ), restoring original"
+	copy /y %1 "%target_file%"
+)
+shift
+if not #%1#==## goto loop
+
+:end
+echo Done
+::pause
+start "" %target_folder%
+exit /b 0
+
+:file_not_exist_error
+echo Error: can't find file %1
+echo Stopping.
+pause
+exit /b -1
+
+:exec_error
+echo Error: unknown error while processing file %1
+echo Stopping.
+pause
+exit /b -2
+
+:file_size
+SET %~2=%~z1
+GOTO :EOF

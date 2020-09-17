@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\http\shell\open\command]
+@="\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" --profile-directory=\"Default\" -- \"%1\""
+"DelegateExecute"="{17FE9752-0B5A-4665-84CD-569794602F5C}"
+
+[HKEY_CLASSES_ROOT\https\shell\open\command]
+@="\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" --profile-directory=\"Default\" -- \"%1\""
+"DelegateExecute"="{17FE9752-0B5A-4665-84CD-569794602F5C}"
+
+[HKEY_CLASSES_ROOT\ChromeHTML\shell\open\command]
+@="\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" --profile-directory=\"Default\" -- \"%1\""

@@ -29,5 +29,6 @@ Add public key to c:\users\<user>\.ssh\authorized_keys
 Get and unzip <https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.1.0.0p1-Beta/OpenSSH-Win64.zip>  
 From Powershell as admin run
 ```
-FixHostFilePermissions.ps1
+./FixHostFilePermissions.ps1
+./FixUserFilePermissions.ps1
 ```

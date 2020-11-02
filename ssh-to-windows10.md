@@ -32,3 +32,10 @@ From Powershell as admin run
 ./FixHostFilePermissions.ps1
 ./FixUserFilePermissions.ps1
 ```
+
+#### Set up default shell for ssh
+
+Run from PowerShell as admin:
+```
+New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\WINDOWS\System32\bash.exe" -PropertyType String -Force
+```

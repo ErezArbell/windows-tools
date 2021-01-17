@@ -22,15 +22,19 @@ PubkeyAuthentication yes
 
 #### Add public key
 
-Add public key to c:\users\<user>\.ssh\authorized_keys
+Add public key to %USERPROFILE%\.ssh\authorized_keys
+```
+md %USERPROFILE%\.ssh
+notepad %USERPROFILE%\.ssh\authorized_keys
+```
 
 #### Fix permissions
 
 Get and unzip <https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.1.0.0p1-Beta/OpenSSH-Win64.zip>  
 From Powershell as admin run
 ```
-./FixHostFilePermissions.ps1
-./FixUserFilePermissions.ps1
+powershell -ExecutionPolicy RemoteSigned ./FixHostFilePermissions.ps1
+powershell -ExecutionPolicy RemoteSigned ./FixUserFilePermissions.ps1
 ```
 
 #### Set up default shell for ssh
@@ -40,3 +44,9 @@ Run from PowerShell as admin:
 New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\WINDOWS\System32\bash.exe" -PropertyType String -Force
 ```
 [source](https://www.hanselman.com/blog/the-easy-way-how-to-ssh-into-bash-and-wsl2-on-windows-10-from-an-external-machine)
+
+#### Restart SSH Server
+```
+Stop-Service sshd
+Start-Service sshd
+```
